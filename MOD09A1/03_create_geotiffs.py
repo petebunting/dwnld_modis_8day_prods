@@ -25,5 +25,7 @@ for modis_file in modis_files:
     file_name = os.path.split(modis_file)[1].replace(".hdf", "").replace(".", "_").lower()
     output_img = os.path.join(out_dir, "{}.tif".format(file_name))
     print(f"Output: {output_img}")
-    create_modis_hdf_to_gtiff(modis_file, output_img)
+    # Only do analysis if file does not exist.
+    if not os.path.exists(output_img):
+        create_modis_hdf_to_gtiff(modis_file, output_img)
 
